@@ -112,7 +112,7 @@ public class ElasticsearchClient
     private static final JsonCodec<NodesResponse> NODES_RESPONSE_CODEC = jsonCodec(NodesResponse.class);
     private static final JsonCodec<CountResponse> COUNT_RESPONSE_CODEC = jsonCodec(CountResponse.class);
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapperProvider().get();
-
+    /**add some fake docs*/
     private static final Pattern ADDRESS_PATTERN = Pattern.compile("((?<cname>[^/]+)/)?(?<ip>.+):(?<port>\\d+)");
     private static final Set<String> NODE_ROLES = ImmutableSet.of("data", "data_content", "data_hot", "data_warm", "data_cold", "data_frozen");
 
@@ -229,7 +229,7 @@ public class ElasticsearchClient
                 }
             }
 
-            passwordConfig.ifPresent(securityConfig -> {
+              passwordConfig.ifPresent(securityConfig -> {
                 CredentialsProvider credentials = new BasicCredentialsProvider();
                 credentials.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(securityConfig.getUser(), securityConfig.getPassword()));
                 clientBuilder.setDefaultCredentialsProvider(credentials);
